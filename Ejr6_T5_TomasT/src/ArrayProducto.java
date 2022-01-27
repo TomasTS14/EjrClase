@@ -59,13 +59,13 @@ public class ArrayProducto {
 	}
 	
 	public void cambiarPrecio(int codigo, double precio) {
-		it  = lista.iterator();
 		
-		while(it.hasNext()) {
+		for(int i=0; i<lista.size(); i++) {
 			
-			Producto aux= it.next();
-			
-			if(aux == )
+			if (lista.get(i).getCodigo() == codigo) {
+				
+				lista.get(i).setPrecio(precio);
+			}
 		}
 		
 	}
