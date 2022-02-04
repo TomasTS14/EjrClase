@@ -7,7 +7,7 @@ Crea también una clase de prueba en la que se verifique el funcionamiento de to
 package claseUsoLibro;
 
 import java.util.Collections;
-import claseLibro.Libro;
+import claseLibro.*;
 import java.util.HashSet;
 import java.util.Iterator;
 public class HashSetLibro  {
@@ -33,7 +33,7 @@ public class HashSetLibro  {
 		 while(it.hasNext()) {
 			 Libro l= it.next();
 			 
-			 if (l.getAutor().contains(cadena) || l.getCodigo().contains(cadena) || l.getTitulo().contains(cadena)) 
+			 if (l.getAutor().get || l.getCodigo().contains(cadena) || l.getTitulo().contains(cadena)) 
 				 System.out.println(l);
 			 
 			 
