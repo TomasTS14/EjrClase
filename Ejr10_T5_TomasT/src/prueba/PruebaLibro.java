@@ -49,7 +49,7 @@ public class PruebaLibro {
 					libro3.setfechaPublicacion("11", "1", "1998");
 					
 					TreeSetLibro lista= new TreeSetLibro();
-					
+				
 					lista.insertar(libro2); lista.insertar(libro1); lista.insertar(libro3);
 					
 					System.out.println("Tiene que estar ordenada.. \n"+lista+"\n\n");
