@@ -12,16 +12,31 @@ que reciba como parámetro una cadena de caracteres correspondiente a
  */
 public class uso {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
+		Scanner sc = new Scanner(System.in);
+		Email email = new Email();
+		String mensaje = "";
+		boolean incorrecto= true;
+		
+		
+		while (incorrecto) {
+			try {
+				System.out.println("Introduce tu mensaje: ");
+				String auxMensaje = sc.nextLine();
+				email.comprobarEmail(auxMensaje);
+				mensaje = auxMensaje;
+				incorrecto= false;
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 
-        Scanner sc = new Scanner(System.in);
-        Email email = new Email();
-        String mensaje;
+			}
+			
 
+		}
 
-        mensaje=email.enviarMensaje();
+		System.out.println("Mensaje: " + mensaje);
 
-        System.out.println("Mensaje: "+mensaje);
-    }
+	}
 }

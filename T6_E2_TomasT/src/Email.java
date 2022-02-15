@@ -31,7 +31,7 @@ public class Email {
 
     }
 
-    public void comprobarEmail(String cadena) throws Exception {
+    public  void comprobarEmail(String cadena) throws Exception {
 
         try {
             String[] datos = cadena.split("@");  //usa su propio iterador , divide la cadena en el momento que encuentra el caracter señalado
