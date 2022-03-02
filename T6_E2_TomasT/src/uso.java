@@ -24,7 +24,7 @@ public class uso {
 			try {
 				System.out.println("Introduce tu mensaje: ");
 				String auxMensaje = sc.nextLine();
-				email.comprobarEmail(auxMensaje);
+				email.enviarMensaje(auxMensaje);
 				mensaje = auxMensaje;
 				incorrecto= false;
 				

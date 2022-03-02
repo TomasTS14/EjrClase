@@ -8,30 +8,28 @@ public class Email {
 
     }
 
-    public String enviarMensaje() throws Exception{
-        sc= new Scanner(System.in);
-        System.out.println("Introduce mensaje");
-        String mensaje;
-        String aux= sc.nextLine();
-        try{
-            comprobarEmail(aux);
-            mensaje = aux;
-            System.out.println("Ha funcionado");
+//	public String enviarMensaje() throws Exception {
+//		sc = new Scanner(System.in);
+//		System.out.println("Introduce mensaje");
+//		String mensaje;
+//		String aux = sc.nextLine();
+//		try {
+//			comprobarEmail(aux);
+//			mensaje = aux;
+//			System.out.println("Ha funcionado");
+//
+//			email = mensaje;
+//
+//		} catch (CorreoExcepcion e) {
+//			e.printStackTrace();
+//			enviarMensaje();
+//		}
+//
+//		return email;
+//
+//	}
 
-            email = mensaje;
-
-        }catch (CorreoExcepcion e){
-        e.printStackTrace();
-        enviarMensaje();
-        }
-
-        return email;
-
-
-
-    }
-
-    public  void comprobarEmail(String cadena) throws Exception {
+    public  void enviarMensaje(String cadena) throws Exception {
 
         try {
             String[] datos = cadena.split("@");  //usa su propio iterador , divide la cadena en el momento que encuentra el caracter señalado

@@ -22,16 +22,18 @@ public class comparacionArrayListLinkedList {
 		//Comparacion de agregado no aleatorio para linked
 		
 		long tiempoAhora= System.currentTimeMillis();
+		int cantObj=0;
 		
-		for(int i=0; i<20000000; i++) {
+		for(int i=0; i<20000; i++) {
 			int randomNum=(int)(Math.random()*2500);
 			laLinked.add(randomNum);
+			cantObj++;
 		}
 		long tiempoDespues= System.currentTimeMillis();
 		
 		long diferencia= tiempoDespues - tiempoAhora;
 		
-		System.out.println("Para agregar 20.000.000 LinkedList elementos tarda (milisegundos): "+ diferencia);
+		System.out.println("Para agregar "+cantObj+" LinkedList elementos tarda (milisegundos): "+ diferencia);
 		
 		
 		tiempoAhora= System.currentTimeMillis();
