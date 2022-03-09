@@ -1,6 +1,6 @@
 package principal;
 
-import aux.Formato;
+import auxiliar.Formato;
 
 public class Pelicula extends Multimedia {
 	private String actorPrincipal;

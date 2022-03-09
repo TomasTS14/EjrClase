@@ -1,5 +1,5 @@
 package principal;
-import aux.*;
+import auxiliar.*;
 public class Disco extends Multimedia {
 	
 	private String genero;

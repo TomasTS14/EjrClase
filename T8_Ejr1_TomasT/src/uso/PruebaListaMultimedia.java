@@ -1,6 +1,6 @@
 package uso;
 import principal.*;
-import aux.Formato;
+import auxiliar.Formato;
 
 public class PruebaListaMultimedia {
 

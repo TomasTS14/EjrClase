@@ -1,6 +1,6 @@
 
 package principal;
-import aux.*;
+import auxiliar.*;
 public class Multimedia {
 
 	private String titulo;
