@@ -13,18 +13,29 @@ public class Pelicula extends Multimedia {
 		
 		if(actorPrincipal == null && actrizPrincipal == null) {
 			throw new IllegalArgumentException("Solo puede faltar uno de los tipos de actores");
-		}else if(actorPrincipal == null) {
+		}else if(actorPrincipal == null && actrizPrincipal != null) {
 			this.actrizPrincipal = actrizPrincipal;
-		}else if (actrizPrincipal == null) {
+		}else if (actrizPrincipal == null && actorPrincipal != null) {
 			this.actorPrincipal = actorPrincipal;
+		}else {
+			this.actorPrincipal = actorPrincipal;
+			this.actrizPrincipal = actrizPrincipal;
 		}
 		
 	}
 	
+	public String getActor() {
+		return actorPrincipal;
+	}
+	public String getActriz() {
+		return actrizPrincipal;
+	}
+	
+	
 	@Override
 	
 	public String toString() {
-		return super.toString() + 
+		return super.toString() + "\nActor principal: "+actorPrincipal+"\nActriz principal: "+actrizPrincipal;
 	}
 	
 	
