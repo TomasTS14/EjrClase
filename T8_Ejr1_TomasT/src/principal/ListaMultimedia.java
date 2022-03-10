@@ -1,8 +1,13 @@
 package principal;
 
-import java.util.ArrayList;
+import java.util.Collections;
 
-public class ListaMultimedia {
+import auxiliar.CompararPorAutor;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class ListaMultimedia  {
 	
 	private ArrayList<Multimedia> lista;
 	
@@ -67,6 +72,12 @@ public class ListaMultimedia {
 		
 		return contador;
 	}
+	public void ordenarPorTitulo() {
+		Collections.sort(lista);
+	}
+	public void ordenarPorAutor() {
+		lista.sort(new CompararPorAutor());
+	}
 	
 	
 	
@@ -80,5 +91,7 @@ public class ListaMultimedia {
 		}
 		return "Lista de elementos multimedia:\n"+string;
 	}
+
+
 
 }

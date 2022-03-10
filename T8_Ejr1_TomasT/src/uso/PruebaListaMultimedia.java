@@ -32,8 +32,10 @@ public class PruebaListaMultimedia {
 		System.out.println(lista.cuantosDiscosDeGenero("rock")+" albumes son de rock");
 		System.out.println("la cantidad de pelis sin actriz es: " + lista.numPelisSinActriz());
 		
-		
-		
+		lista.ordenarPorTitulo();
+		System.out.println(lista);
+		lista.ordenarPorAutor();
+		System.out.println(lista);
 		
 
 	}
