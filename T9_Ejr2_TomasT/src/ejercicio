@@ -1,0 +1,2 @@
+Escribe un método que reciba por parámetro el nombre de un fichero de texto (que habrás creado con anterioridad) y
+cuente las vocales (tanto mayúsculas como minúsculas) que aparecen en él. Incluye también el tratamiento de excepciones.

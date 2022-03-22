@@ -1,0 +1,2 @@
+Escribe un método que reciba por parámetro el nombre de un fichero de texto que contiene varias líneas con una cantidad real en cada
+ una de ellas (que habrás creado con anterioridad), y calcula sus suma y media. Incluye también el tratamiento de excepciones.
