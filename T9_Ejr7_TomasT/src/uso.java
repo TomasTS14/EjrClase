@@ -1,10 +1,13 @@
-import java.io.BufferedInputStream;+
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -25,29 +28,44 @@ El fichero que contiene los datos no necesita ser "legible por humanos"
 public class uso {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Introduce el nombre del archivo a crear:");
+	//	Scanner sc = new Scanner(System.in);
+	//	System.out.println("Introduce el nombre del archivo a crear:");
 		
+		String archivoACrear = "src/data.dat";
 		
-		try (FileOutputStream ouS = new FileOutputStream(new File ("src/data.dat"));){
+
+		
+		try (FileOutputStream fileOutStrm = new FileOutputStream(new File (archivoACrear));){
 			
-			FechaHoras_y_Temps3.guardaFecha(2022, 1, 1, ouS);
-			FechaHoras_y_Temps3.guardaHorasYTemps(ouS);
+			FechaHoras_y_Temps3.guardaFecha(2022,1,1,fileOutStrm);
+			FechaHoras_y_Temps3.guardaHorasYTemps(fileOutStrm);
 			
+			fileOutStrm.close();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}catch( Exception e) {
 			e.printStackTrace();
 		}
 		
-		try (ObjectInputStream oIS = new ObjectInputStream(new FileInputStream("src/data.dat"));){
+		try{
+			 DataInputStream dataIn = new DataInputStream(new FileInputStream(archivoACrear));
+			 
+			 for (int i = 0; i<10; i++) {
+				 System.out.print(dataIn.readChar());
+				 
+			 }
 			
-			System.out.println()oIS.readObject().toString();
-			
-			
+			 System.out.println();
+			 
+			 for (int i= 0; i<dataIn.available()+20; i++) { //No se por qué tuve que agregar esto para que llegase a la hora 23, si lo dejaba en available se quedaba en 22 máximo
+				 	System.out.print(dataIn.readInt());
+				 	System.out.print("-");
+				 	System.out.print(String.format("%3.1f", dataIn.readDouble()));
+				 	System.out.println();
+			 }
 			
 		}catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("error leyendo del archivo");
 		}
 		
 	
