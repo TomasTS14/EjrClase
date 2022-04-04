@@ -1,0 +1,1 @@
+Soy el archivo que borra a otros si se llaman como yo. 
