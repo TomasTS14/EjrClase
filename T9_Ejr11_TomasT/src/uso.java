@@ -5,14 +5,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
+import java.util.ArrayList;
+
+
 public class uso {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int menu = 1;
 		try{
-			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(new File("./src/clientes.dat")));
+			ObjectOutputStream objectOut;
+			ObjectInputStream objectIn;
+			ArrayList<Cliente> listaDeClientes = new ArrayList<>();
+			if (!new File("./src/clientes.dat").exists()) { 
+				
+				objectOut = new ObjectOutputStream(new FileOutputStream("./src/clientes.dat"));
+				objectOut.writeObject(listaDeClientes);
+			}
+				objectIn = new ObjectInputStream(new FileInputStream("./src/clientes.dat"));
+				listaDeClientes = (ArrayList)(objectIn.readObject());
+				
 			while ( menu != -1) {
 				System.out.println("Para salir de la aplicacion: -1\nPara agregar clientes: 1\nPara ver los datos: 2\n");
 				menu = sc.nextInt();
@@ -35,23 +47,24 @@ public class uso {
 							moroso = true;
 						}else if (aux.equals("n")) moroso = false;
 						System.out.println("Agregando cliente...");
-						objectOut.writeObject(new Cliente(nombre, telefono, direccion, nif, moroso));
+						listaDeClientes.add((new Cliente(nombre, telefono, direccion, nif, moroso)));
 				}else if (menu == 2) {
-					ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream("./src/clientes.dat"));
-					
-						System.out.println(objectIn.readObject().toString());
-					
-					
+					System.out.println(listaDeClientes);					
+				}else if (menu == -1) {
+					objectOut = new ObjectOutputStream(new FileOutputStream("./src/clientes.dat"));
+					objectOut.writeObject(listaDeClientes);
 				}
 
 			}
-			
+			sc.close();
+			objectIn.close();
 			
 		}catch(IOException e) {
 			System.out.println("No se ha podido crear el archivo o escribir en el");
 			e.printStackTrace();
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		
 		}
 	}
 
