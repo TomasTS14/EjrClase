@@ -1,13 +1,18 @@
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame implements ActionListener {
+	
 	private JButton registerBtn;
 	private JButton loginBtn;
+	
+
+	public static final String storedLoginsLocation = "./logins/logins.dat";
 	
 	public MainFrame() {
 		setVisible(true);

@@ -1,16 +1,20 @@
+import java.util.Arrays;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.HashMap;
 
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -25,15 +29,19 @@ public class RegisterFrame extends JFrame implements ActionListener{
 	private JLabel pass2Label;
 
 	private JTextField nombreTF;
-	private JTextField pass1TF;
-	private JTextField pass2TF;
+	private JPasswordField pass1TF;
+	private JPasswordField pass2TF;
 	
 	private JButton cancelarBtn;
 	private JButton registrarBtn;
 	
+ private HashMap<String, char[]> myLoginsHashMap;
+ private  String storedLoginsLocation;
 
 	public RegisterFrame() {
+		
 		super("Registro");
+		storedLoginsLocation = MainFrame.storedLoginsLocation;
 		setVisible(true);
 		setSize(300,200);
 		setResizable(false);
@@ -56,8 +64,8 @@ public class RegisterFrame extends JFrame implements ActionListener{
 		pass2Label = new JLabel("Introducela de nuevo: ");
 		
 		nombreTF = new JTextField(10);
-		pass1TF = new JTextField(10);
-		pass2TF = new JTextField(10);
+		pass1TF = new JPasswordField(10);
+		pass2TF = new JPasswordField(10);
 		
 		cancelarBtn = new JButton("cancelar");
 		registrarBtn = new JButton("registrar");
@@ -86,15 +94,15 @@ public class RegisterFrame extends JFrame implements ActionListener{
 		return nombreTF.getText();
 	}
 	
-	public String getPass1() {
-		return pass1TF.getText();
+	public char[] getPass1() {
+		return pass1TF.getPassword();
 	}
-	public String getPass2() {
-		return pass2TF.getText();
+	public char[] getPass2() {
+		return pass2TF.getPassword();
 	}
 	
 	public boolean comparePasswords() {
-		return (getPass1().equals(getPass2()));
+		return (Arrays.equals(getPass2(), getPass1()));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -103,9 +111,21 @@ public class RegisterFrame extends JFrame implements ActionListener{
 		
 		if ( btnPressed == cancelarBtn) this.dispose();
 		else if ( btnPressed == registrarBtn && comparePasswords() ) {
-		
-			
-			//encriptador.encriptarInfo(getNombre(), getPass1());
+			if (new File(storedLoginsLocation).exists()) {
+				
+				myLoginsHashMap =(HashMap<String, char[]>)  EscritorYrecuperadorConCondiciones.recuperarHashMap(storedLoginsLocation);
+				myLoginsHashMap.put(getNombre(), getPass2());
+				EscritorYrecuperadorConCondiciones.crearYescribirEnHashMap(storedLoginsLocation, myLoginsHashMap);
+				
+				
+			}else {
+				
+				myLoginsHashMap = new HashMap<>();
+				myLoginsHashMap.put(getNombre(), getPass2());
+				EscritorYrecuperadorConCondiciones.crearYescribirEnHashMap(storedLoginsLocation, myLoginsHashMap);
+
+			}
+			this.dispose();
 		}
 	}
 	

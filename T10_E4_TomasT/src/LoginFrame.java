@@ -2,12 +2,14 @@
 
 	import java.awt.FlowLayout;
 	import java.awt.GridLayout;
+import java.util.HashMap;
 
-	import javax.swing.JButton;
+import javax.swing.JButton;
 	import javax.swing.JFrame;
 	import javax.swing.JLabel;
 	import javax.swing.JPanel;
-	import javax.swing.JTextArea;
+import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 	import javax.swing.JTextField;
 
 	public class LoginFrame extends JFrame {
@@ -19,10 +21,13 @@
 		private JLabel pass1Label;
 
 		private JTextField nombreTF;
-		private JTextField pass1TF;
+		private JPasswordField pass1TF;
 		
 		private JButton cancelarBtn;
 		private JButton loginBtn;
+		
+		private HashMap<String, char[]> loginHashMap;
+		private String storedLoginsLocation = MainFrame.storedLoginsLocation;
 		
 
 		public LoginFrame() {
@@ -46,7 +51,7 @@
 			pass1Label = new JLabel("Introduce contrasena: ");
 			
 			nombreTF = new JTextField(10);
-			pass1TF = new JTextField(10);
+			pass1TF = new JPasswordField(10);
 			
 			cancelarBtn = new JButton("cancelar");
 			loginBtn = new JButton("iniciar sesion");
@@ -64,7 +69,20 @@
 			
 			btnPanel.add(cancelarBtn);
 			btnPanel.add(loginBtn);
-
 			
+			loginBtn.addActionListener((ae)->{
+				
+			});
+
+			loginBtn.addActionListener((ae)->{
+				
+			});
+		}
+		public boolean comprobarUsuarioPassword () {
+			loginHashMap = (HashMap<String, char[]>)EscritorYrecuperadorConCondiciones.recuperarHashMap(storedLoginsLocation);
+			
+			String usuario = loginHashMap.get(nombreTF.getText().toCharArray()).toString();
+			
+			i
 		}
 }
