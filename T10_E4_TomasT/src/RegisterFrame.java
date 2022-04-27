@@ -13,6 +13,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -125,6 +126,7 @@ public class RegisterFrame extends JFrame implements ActionListener{
 				EscritorYrecuperadorConCondiciones.crearYescribirEnHashMap(storedLoginsLocation, myLoginsHashMap);
 
 			}
+			JOptionPane.showMessageDialog(null, "Registrado con exito!!");
 			this.dispose();
 		}
 	}

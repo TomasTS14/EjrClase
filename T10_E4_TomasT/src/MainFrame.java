@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		 JButton pressedBtn = (JButton) e.getSource();
 		 if (pressedBtn == registerBtn) {
 			 new RegisterFrame();
-			System.out.println( e.getSource());
+			
 		 }
 		 else if (pressedBtn == loginBtn) new LoginFrame();
 		
