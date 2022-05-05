@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -30,10 +31,10 @@ public class CalculadoraE5 extends JFrame{
 	private JLabel campo1Label;
 	private JLabel campo2Label;
 	private JLabel resultadoLabel;
-	private JLabel showResultLabel;
 	
 	private JTextField campo1TF;
 	private JTextField campo2TF;
+	private JTextField showResulTF;
 	
 	private JButton sumaBtn;
 	private JButton restaBtn;
@@ -56,7 +57,7 @@ public class CalculadoraE5 extends JFrame{
 		super("Calculadora");
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
-		setSize(250, 400);
+		setSize(300, 400);
 		setVisible(true);
 		setResizable(true);
 		//imagenes usadas:
@@ -68,6 +69,12 @@ public class CalculadoraE5 extends JFrame{
 		Image aux_calculadorImg = imagenCalculadora.getImage().getScaledInstance(230, 100, Image.SCALE_SMOOTH);
 		imagenCalculadora = new ImageIcon(aux_calculadorImg);
 		
+		Image aux_salidaImg = imagenBotonSalida.getImage().getScaledInstance(50, 40, Image.SCALE_SMOOTH);
+		imagenBotonSalida = new ImageIcon(aux_salidaImg);
+		
+		Image aux_infoImg = imagenBotonInfo.getImage().getScaledInstance(50, 40, Image.SCALE_SMOOTH);
+		imagenBotonInfo = new ImageIcon(aux_infoImg);
+		
 		
 		//inicialización de componentes
 		imagenPanel = new JPanel();
@@ -78,15 +85,16 @@ public class CalculadoraE5 extends JFrame{
 		camposPanel1 = new JPanel();
 		camposPanel2 = new JPanel();
 		campoResultadoPanel = new JPanel();
-		
+
 		campo1Label= new JLabel("Dato 1:");
 		campo2Label = new JLabel("Dato 2:");
 		resultadoLabel = new JLabel("Resultado");
-		showResultLabel = new JLabel("");
 		calculadoraImgLabel = new JLabel(imagenCalculadora);
 		salidaImgBtn = new JLabel();
 		inforImgBtn = new JLabel();
 		
+		showResulTF = new JTextField(10);
+				showResulTF.setEditable(false);
 		campo1TF = new JTextField(10);
 		campo2TF = new JTextField(10);
 		
@@ -95,8 +103,8 @@ public class CalculadoraE5 extends JFrame{
 		multiplicaBtn = new JButton("*");
 		divideBtn = new JButton("/");
 		
-		salidaBtn = new JButton();
-		infoBtn = new JButton();
+		salidaBtn = new JButton(imagenBotonSalida);
+		infoBtn = new JButton(imagenBotonInfo);
 		
 
 		
@@ -121,16 +129,83 @@ public class CalculadoraE5 extends JFrame{
 			camposPanel2.add(campo2TF);
 		camposPanel.add(campoResultadoPanel);
 			campoResultadoPanel.add(resultadoLabel);
-			campoResultadoPanel.add(showResultLabel);
+			campoResultadoPanel.add(showResulTF);
 	
 	//configurando la zona de operadores:
 	
-		operadoresPanel.setLayout(new BoxLayout(operadoresPanel, BoxLayout.Y_AXIS));
+		operadoresPanel.setLayout(new GridLayout(4,1));
 		operadoresPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-
+			
 			operadoresPanel.add(sumaBtn);
 			operadoresPanel.add(restaBtn);
 			operadoresPanel.add(divideBtn);
 			operadoresPanel.add(multiplicaBtn);
+			
+			
+			//Configurando zona de botnoes.
+			
+			botonesPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+				
+				botonesPanel.add(salidaBtn);
+				botonesPanel.add(infoBtn);
+			
+			//agregando actionListeners:
+			
+			sumaBtn.addActionListener((a) -> {
+				try {
+				showResulTF.setText("");
+				Double val1 = Double.parseDouble(campo1TF.getText());
+				Double val2 = Double.parseDouble(campo2TF.getText());
+				
+				showResulTF.setText(String.valueOf(val1 + val2));
+				}catch(Exception e) {
+					showResulTF.setText("Ha habido un error");
+				}
+			});
+			restaBtn.addActionListener((a) -> {
+				try {
+				showResulTF.setText("");
+				Double val1 = Double.parseDouble(campo1TF.getText());
+				Double val2 = Double.parseDouble(campo2TF.getText());
+				
+				showResulTF.setText(String.valueOf(val1 - val2));
+				}catch(Exception e) {
+					showResulTF.setText("Ha habido un error");
+				}
+			});
+			
+			multiplicaBtn.addActionListener((a) -> {
+				try {
+				showResulTF.setText("");
+				Double val1 = Double.parseDouble(campo1TF.getText());
+				Double val2 = Double.parseDouble(campo2TF.getText());
+				
+				showResulTF.setText(String.valueOf(val1 * val2));
+				}catch(Exception e) {
+					showResulTF.setText("Ha habido un error");
+				}
+			});
+			
+			divideBtn.addActionListener((a) -> {
+				try {
+				showResulTF.setText("");
+				Double val1 = Double.parseDouble(campo1TF.getText());
+				Double val2 = Double.parseDouble(campo2TF.getText());
+				
+				showResulTF.setText(String.valueOf(val1 / val2));
+				}catch(Exception e) {
+					showResulTF.setText("Ha habido un error");
+				}
+			});
+			
+			//action listeners de salida e info
+			salidaBtn.addActionListener((a) ->{
+				dispose();
+			});
+			
+			infoBtn.addActionListener((a) -> {
+				JOptionPane.showMessageDialog(null, "App hecha por Tomas Torres");
+			});
+			
 	}
 }
