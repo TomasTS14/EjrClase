@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.CheckboxGroup;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
@@ -20,6 +21,10 @@ public class IdiomasFrame extends JFrame{
 	private JCheckBox opcion2Box;
 	private JCheckBox opcion3Box;
 	
+	private JLabel idioma1Label;
+	private JLabel idioma2Label;
+	private JLabel idioma3Label;
+	
 	
 	public IdiomasFrame() {
 		super("Seleccion Idiomas");
@@ -37,6 +42,14 @@ public class IdiomasFrame extends JFrame{
 		opcion2Box = new JCheckBox("Frances");
 		opcion3Box = new JCheckBox("Aleman");
 		
+		idioma1Label = new JLabel();
+		idioma2Label = new JLabel();
+		idioma3Label = new JLabel();
+		
+		idioma1Label.setForeground(Color.blue);
+		idioma2Label.setForeground(Color.blue);
+		idioma3Label.setForeground(Color.blue);
+		
 		//Layouts
 		
 		checkPanel.setLayout(new GridLayout(3,1));
@@ -46,6 +59,10 @@ public class IdiomasFrame extends JFrame{
 		
 		checkPanel.add(opcion1Box); checkPanel.add(opcion2Box); checkPanel.add(opcion3Box);
 		selectionPanel.add(new JLabel("Idiomas elegidos: "));
+		selectionPanel.add(idioma1Label);
+		selectionPanel.add(idioma2Label);
+		selectionPanel.add(idioma3Label);
+		
 		add(checkPanel,BorderLayout.CENTER);
 		add(selectionPanel, BorderLayout.SOUTH);
 		
@@ -55,7 +72,11 @@ public class IdiomasFrame extends JFrame{
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				selectionPanel.add(new JLabel(opcion1Box.getText()));
+				if(opcion1Box.isSelected()) {
+					idioma1Label.setText("Ingles");
+				}else {
+					idioma1Label.setText("");
+				}
 				
 			}
 		});
@@ -63,16 +84,22 @@ public class IdiomasFrame extends JFrame{
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				selectionPanel.add(new JLabel(opcion2Box.getText()));
-				
+				if(opcion2Box.isSelected()) {
+					idioma2Label.setText("Frances");
+				}else {
+					idioma2Label.setText("");
+				}
 			}});
 		
 		opcion3Box.addItemListener(new ItemListener() {
 			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				selectionPanel.add(new JLabel(opcion3Box.getText()));
-				selectionPanel.repaint();
+				if(opcion3Box.isSelected()) {
+					idioma3Label.setText("Aleman");
+				}else {
+					idioma3Label.setText("");
+				}
 				
 			}
 		});
