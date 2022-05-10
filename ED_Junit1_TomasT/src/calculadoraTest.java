@@ -1,14 +1,35 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.*;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class calculadoraTest {
+	
+	private Stream<double> arguments(double a, double b , double c) {
+		return Stream.of(a, b, c);
+	}
 
-	@Test
-	void testSuma() {
+	@ParameterizedTest
+	@MethodSource("twoNumbers")
+	
+	void testSuma(int a, int b, int c) {
 
-		assertEquals(100, Calculadora.suma(80, 20));
+		assertEquals(a, Calculadora.suma( b , c));
 
+	}
+	
+	private static Stream<Arguments> twoNumbers(){
+		
+		return Stream.of(
+				arguments(40, 25, 15),
+				arguments(2000, 1999, 1),
+				arguments (9, -5 , 9)
+				);
 	}
 
 	@Test
