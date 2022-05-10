@@ -1,0 +1,443 @@
+[1mdiff --git a/T10_E10_TomasT/.classpath b/T10_E10_TomasT/.classpath[m
+[1mnew file mode 100644[m
+[1mindex 0000000..57bca72[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E10_TomasT/.classpath[m
+[36m@@ -0,0 +1,10 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<classpath>[m
+[32m+[m	[32m<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">[m
+[32m+[m		[32m<attributes>[m
+[32m+[m			[32m<attribute name="module" value="true"/>[m
+[32m+[m		[32m</attributes>[m
+[32m+[m	[32m</classpathentry>[m
+[32m+[m	[32m<classpathentry kind="src" path="src"/>[m
+[32m+[m	[32m<classpathentry kind="output" path="bin"/>[m
+[32m+[m[32m</classpath>[m
+[1mdiff --git a/T10_E10_TomasT/.project b/T10_E10_TomasT/.project[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f60768a[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E10_TomasT/.project[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<projectDescription>[m
+[32m+[m	[32m<name>T10_E10_TomasT</name>[m
+[32m+[m	[32m<comment></comment>[m
+[32m+[m	[32m<projects>[m
+[32m+[m	[32m</projects>[m
+[32m+[m	[32m<buildSpec>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>org.eclipse.jdt.core.javabuilder</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m	[32m</buildSpec>[m
+[32m+[m	[32m<natures>[m
+[32m+[m		[32m<nature>org.eclipse.jdt.core.javanature</nature>[m
+[32m+[m	[32m</natures>[m
+[32m+[m[32m</projectDescription>[m
+[1mdiff --git a/T10_E10_TomasT/src/CalculadoraConMenu.java b/T10_E10_TomasT/src/CalculadoraConMenu.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..05f462e[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E10_TomasT/src/CalculadoraConMenu.java[m
+[36m@@ -0,0 +1,143 @@[m
+[32m+[m[32mimport java.awt.BorderLayout;[m
+[32m+[m[32mimport java.awt.FlowLayout;[m
+[32m+[m[32mimport java.awt.GridLayout;[m
+[32m+[m[32mimport java.awt.Image;[m
+[32m+[m
+[32m+[m[32mimport javax.swing.ImageIcon;[m
+[32m+[m[32mimport javax.swing.JFrame;[m
+[32m+[m[32mimport javax.swing.JLabel;[m
+[32m+[m[32mimport javax.swing.JMenu;[m
+[32m+[m[32mimport javax.swing.JMenuBar;[m
+[32m+[m[32mimport javax.swing.JMenuItem;[m
+[32m+[m[32mimport javax.swing.JOptionPane;[m
+[32m+[m[32mimport javax.swing.JPanel;[m
+[32m+[m[32mimport javax.swing.JTextField;[m
+[32m+[m[32mimport javax.swing.border.Border;[m
+[32m+[m
+[32m+[m[32mpublic class CalculadoraConMenu extends JFrame{[m
+[32m+[m
+[32m+[m	[32mprivate JMenuBar menuBar;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JMenu menu1Operaciones;[m
+[32m+[m	[32mprivate JMenu menu2App;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JMenuItem item1Suma;[m
+[32m+[m	[32mprivate JMenuItem item2Resta;[m
+[32m+[m	[32mprivate JMenuItem item3Multiplica;[m
+[32m+[m	[32mprivate JMenuItem item4Dividir;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JMenuItem item1Salir;[m
+[32m+[m	[32mprivate JMenuItem item2About;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JLabel imagenLabel;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate ImageIcon imagenCalc;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JPanel panelCampos;[m
+[32m+[m	[32mprivate JPanel panelCampos1;[m
+[32m+[m	[32mprivate JPanel panelCampos2;[m
+[32m+[m	[32mprivate JPanel panelResult;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JLabel operando1Label;[m
+[32m+[m	[32mprivate JLabel operando2Label;[m
+[32m+[m	[32mprivate JLabel resultLabel;[m
+[32m+[m	[32mprivate JLabel showResultLabel;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate JTextField operando1TF;[m
+[32m+[m	[32mprivate JTextField operando2TF;[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic CalculadoraConMenu() {[m
+[32m+[m		[32msuper("Calculadora con menu");[m
+[32m+[m		[32msetResizable(false);[m
+[32m+[m		[32msetLocationRelativeTo(null);[m
+[32m+[m		[32msetSize(300,400);[m
+[32m+[m		[32msetVisible(true);[m
+[32m+[m[41m		[m
+[32m+[m		[32m//inicializo:[m
+[32m+[m		[32mmenuBar = new JMenuBar();[m
+[32m+[m			[32mmenu1Operaciones = new JMenu("Operaciones");[m
+[32m+[m			[32mmenu2App = new JMenu("Aplicacion");[m
+[32m+[m[41m			[m
+[32m+[m		[32m//opciones del menu1:[m
+[32m+[m				[32mitem1Suma = new JMenuItem("Suma");[m
+[32m+[m				[32mitem2Resta = new JMenuItem("Resta");[m
+[32m+[m				[32mitem3Multiplica = new JMenuItem("Multiplicar");[m
+[32m+[m				[32mitem4Dividir = new JMenuItem("Dividir");[m
+[32m+[m[41m				[m
+[32m+[m		[32m//Opciones del menu2:[m
+[32m+[m				[32mitem1Salir = new JMenuItem("Salir");[m
+[32m+[m				[32mitem2About = new JMenuItem("About");[m
+[32m+[m[41m		[m
+[32m+[m		[32m//inicializo imagen NORTH:[m
+[32m+[m		[32mimagenCalc = new ImageIcon(CalculadoraConMenu.class.getResource("./imagenCalculadora.jpg"));[m
+[32m+[m		[32mImage imagen_AUX = imagenCalc.getImage().getScaledInstance(300, 100, Image.SCALE_SMOOTH);[m
+[32m+[m		[32mimagenCalc =new ImageIcon(imagen_AUX);[m
+[32m+[m		[32mimagenLabel = new JLabel(imagenCalc); //<----usare esta[m
+[32m+[m[41m		[m
+[32m+[m		[32m//inicializo panel de campos y un panel interno por cada label+text:[m
+[32m+[m		[32mpanelCampos = new JPanel();[m
+[32m+[m			[32mpanelCampos1 = new JPanel();[m
+[32m+[m				[32moperando1Label = new JLabel("Dato 1"); operando1TF = new JTextField(10);[m
+[32m+[m			[32mpanelCampos2 = new JPanel();[m
+[32m+[m				[32moperando2Label = new JLabel("Dato 2"); operando2TF = new JTextField(10);[m
+[32m+[m			[32mpanelResult = new JPanel();[m
+[32m+[m				[32mresultLabel = new JLabel("Resultado"); showResultLabel = new JLabel();[m[41m [m
+[32m+[m[41m			[m
+[32m+[m				[32m//Layouts de cada Panel:[m
+[32m+[m				[32mpanelCampos.setLayout(new GridLayout(3,1));[m
+[32m+[m				[32mpanelCampos1.setLayout(new FlowLayout());[m
+[32m+[m				[32mpanelCampos2.setLayout(new FlowLayout());[m
+[32m+[m				[32mpanelResult.setLayout(new FlowLayout());[m
+[32m+[m[41m				[m
+[32m+[m		[32m//construyo la menuBar:[m
+[32m+[m			[32mmenu1Operaciones.add(item1Suma); menu1Operaciones.add(item2Resta); menu1Operaciones.add(item3Multiplica); menu1Operaciones.add(item4Dividir);[m
+[32m+[m			[32mmenu2App.add(item1Salir); menu2App.add(item2About);[m
+[32m+[m			[32mmenuBar.add(menu1Operaciones); menuBar.add(menu2App);[m
+[32m+[m			[32m//la agrego al frame:[m
+[32m+[m			[32mthis.add(menuBar, BorderLayout.NORTH);[m
+[32m+[m[41m			[m
+[32m+[m		[32m//Construyo los paneles:[m
+[32m+[m			[32mpanelCampos1.add(operando1Label); panelCampos1.add(operando1TF);[m
+[32m+[m			[32mpanelCampos2.add(operando2Label); panelCampos2.add(operando2TF);[m
+[32m+[m			[32mpanelResult.add(resultLabel); panelResult.add(showResultLabel);[m
+[32m+[m			[32mpanelCampos.add(panelCampos1); panelCampos.add(panelCampos2); panelCampos.add(panelResult);[m
+[32m+[m			[32mpanelCampos.setSize(300, 300);[m
+[32m+[m			[32mthis.add(panelCampos, BorderLayout.SOUTH);[m
+[32m+[m[41m			[m
+[32m+[m[41m				[m
+[32m+[m		[32m//agrego imagen:[m
+[32m+[m			[32mthis.add(imagenLabel);[m
+[32m+[m[41m			[m
+[32m+[m[41m			[m
+[32m+[m		[32m//agrego actionListeners:[m
+[32m+[m			[32mitem1Suma.addActionListener((a) -> {[m
+[32m+[m				[32mDouble resultado = (Double.parseDouble(operando1TF.getText())+Double.parseDouble(operando2TF.getText()));[m
+[32m+[m				[32mshowResultLabel.setText(resultado.toString());[m
+[32m+[m			[32m});[m
+[32m+[m[41m			[m
+[32m+[m			[32mitem2Resta.addActionListener((a) -> {[m
+[32m+[m				[32mDouble resultado = (Double.parseDouble(operando1TF.getText()) - Double.parseDouble(operando2TF.getText()));[m
+[32m+[m				[32mshowResultLabel.setText(resultado.toString());[m
+[32m+[m			[32m});[m
+[32m+[m[41m			[m
+[32m+[m			[32mitem3Multiplica.addActionListener((a)->{[m
+[32m+[m				[32mDouble resultado = (Double.parseDouble(operando1TF.getText())*Double.parseDouble(operando2TF.getText()));[m
+[32m+[m				[32mshowResultLabel.setText(resultado.toString());[m
+[32m+[m			[32m});[m
+[32m+[m			[32mitem4Dividir.addActionListener((a)->{[m
+[32m+[m				[32mDouble resultado = (Double.parseDouble(operando1TF.getText())/Double.parseDouble(operando2TF.getText()));[m
+[32m+[m				[32mshowResultLabel.setText(resultado.toString());[m
+[32m+[m			[32m});[m
+[32m+[m[41m			[m
+[32m+[m			[32m//action listeners del menu2:[m
+[32m+[m			[32mitem1Salir.addActionListener((a)->{[m
+[32m+[m				[32mthis.dispose();[m
+[32m+[m			[32m});[m
+[32m+[m			[32mitem2About.addActionListener((a)->{[m
+[32m+[m				[32mJOptionPane.showMessageDialog(null, "Calculadora hecha por Tomas");[m
+[32m+[m			[32m});[m
+[32m+[m[41m		[m
+[32m+[m[41m		[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[1mdiff --git a/T10_E10_TomasT/src/imagenCalculadora.jpg b/T10_E10_TomasT/src/imagenCalculadora.jpg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..eb11d41[m
+Binary files /dev/null and b/T10_E10_TomasT/src/imagenCalculadora.jpg differ
+[1mdiff --git a/T10_E10_TomasT/src/uso.java b/T10_E10_TomasT/src/uso.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..809c853[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E10_TomasT/src/uso.java[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32mimport javax.swing.SwingUtilities;[m
+[32m+[m
+[32m+[m[32mpublic class uso {[m
+[32m+[m
+[32m+[m	[32mpublic static void main(String[] args) {[m
+[32m+[m[41m		[m
+[32m+[m		[32mSwingUtilities.invokeLater(() ->{[m
+[32m+[m			[32mnew CalculadoraConMenu();[m
+[32m+[m		[32m});[m
+[32m+[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/T10_E8_TomasT/src/IdiomasFrame.java b/T10_E8_TomasT/src/IdiomasFrame.java[m
+[1mindex cdf91f5..4836207 100644[m
+[1m--- a/T10_E8_TomasT/src/IdiomasFrame.java[m
+[1m+++ b/T10_E8_TomasT/src/IdiomasFrame.java[m
+[36m@@ -1,5 +1,6 @@[m
+ import java.awt.BorderLayout;[m
+ import java.awt.CheckboxGroup;[m
+[32m+[m[32mimport java.awt.Color;[m
+ import java.awt.FlowLayout;[m
+ import java.awt.GridLayout;[m
+ import java.awt.event.ItemEvent;[m
+[36m@@ -20,6 +21,10 @@[m [mpublic class IdiomasFrame extends JFrame{[m
+ 	private JCheckBox opcion2Box;[m
+ 	private JCheckBox opcion3Box;[m
+ 	[m
+[32m+[m	[32mprivate JLabel idioma1Label;[m
+[32m+[m	[32mprivate JLabel idioma2Label;[m
+[32m+[m	[32mprivate JLabel idioma3Label;[m
+[32m+[m[41m	[m
+ 	[m
+ 	public IdiomasFrame() {[m
+ 		super("Seleccion Idiomas");[m
+[36m@@ -37,6 +42,14 @@[m [mpublic class IdiomasFrame extends JFrame{[m
+ 		opcion2Box = new JCheckBox("Frances");[m
+ 		opcion3Box = new JCheckBox("Aleman");[m
+ 		[m
+[32m+[m		[32midioma1Label = new JLabel();[m
+[32m+[m		[32midioma2Label = new JLabel();[m
+[32m+[m		[32midioma3Label = new JLabel();[m
+[32m+[m[41m		[m
+[32m+[m		[32midioma1Label.setForeground(Color.blue);[m
+[32m+[m		[32midioma2Label.setForeground(Color.blue);[m
+[32m+[m		[32midioma3Label.setForeground(Color.blue);[m
+[32m+[m[41m		[m
+ 		//Layouts[m
+ 		[m
+ 		checkPanel.setLayout(new GridLayout(3,1));[m
+[36m@@ -46,6 +59,10 @@[m [mpublic class IdiomasFrame extends JFrame{[m
+ 		[m
+ 		checkPanel.add(opcion1Box); checkPanel.add(opcion2Box); checkPanel.add(opcion3Box);[m
+ 		selectionPanel.add(new JLabel("Idiomas elegidos: "));[m
+[32m+[m		[32mselectionPanel.add(idioma1Label);[m
+[32m+[m		[32mselectionPanel.add(idioma2Label);[m
+[32m+[m		[32mselectionPanel.add(idioma3Label);[m
+[32m+[m[41m		[m
+ 		add(checkPanel,BorderLayout.CENTER);[m
+ 		add(selectionPanel, BorderLayout.SOUTH);[m
+ 		[m
+[36m@@ -55,7 +72,11 @@[m [mpublic class IdiomasFrame extends JFrame{[m
+ 			[m
+ 			@Override[m
+ 			public void itemStateChanged(ItemEvent e) {[m
+[31m-				selectionPanel.add(new JLabel(opcion1Box.getText()));[m
+[32m+[m				[32mif(opcion1Box.isSelected()) {[m
+[32m+[m					[32midioma1Label.setText("Ingles");[m
+[32m+[m				[32m}else {[m
+[32m+[m					[32midioma1Label.setText("");[m
+[32m+[m				[32m}[m
+ 				[m
+ 			}[m
+ 		});[m
+[36m@@ -63,16 +84,22 @@[m [mpublic class IdiomasFrame extends JFrame{[m
+ 			[m
+ 			@Override[m
+ 			public void itemStateChanged(ItemEvent e) {[m
+[31m-				selectionPanel.add(new JLabel(opcion2Box.getText()));[m
+[31m-				[m
+[32m+[m				[32mif(opcion2Box.isSelected()) {[m
+[32m+[m					[32midioma2Label.setText("Frances");[m
+[32m+[m				[32m}else {[m
+[32m+[m					[32midioma2Label.setText("");[m
+[32m+[m				[32m}[m
+ 			}});[m
+ 		[m
+ 		opcion3Box.addItemListener(new ItemListener() {[m
+ 			[m
+ 			@Override[m
+ 			public void itemStateChanged(ItemEvent e) {[m
+[31m-				selectionPanel.add(new JLabel(opcion3Box.getText()));[m
+[31m-				selectionPanel.repaint();[m
+[32m+[m				[32mif(opcion3Box.isSelected()) {[m
+[32m+[m					[32midioma3Label.setText("Aleman");[m
+[32m+[m				[32m}else {[m
+[32m+[m					[32midioma3Label.setText("");[m
+[32m+[m				[32m}[m
+ 				[m
+ 			}[m
+ 		});[m
+[1mdiff --git a/T10_E9_Tomast/.classpath b/T10_E9_Tomast/.classpath[m
+[1mnew file mode 100644[m
+[1mindex 0000000..57bca72[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E9_Tomast/.classpath[m
+[36m@@ -0,0 +1,10 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<classpath>[m
+[32m+[m	[32m<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">[m
+[32m+[m		[32m<attributes>[m
+[32m+[m			[32m<attribute name="module" value="true"/>[m
+[32m+[m		[32m</attributes>[m
+[32m+[m	[32m</classpathentry>[m
+[32m+[m	[32m<classpathentry kind="src" path="src"/>[m
+[32m+[m	[32m<classpathentry kind="output" path="bin"/>[m
+[32m+[m[32m</classpath>[m
+[1mdiff --git a/T10_E9_Tomast/.project b/T10_E9_Tomast/.project[m
+[1mnew file mode 100644[m
+[1mindex 0000000..897bc68[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E9_Tomast/.project[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<projectDescription>[m
+[32m+[m	[32m<name>T10_E9_Tomast</name>[m
+[32m+[m	[32m<comment></comment>[m
+[32m+[m	[32m<projects>[m
+[32m+[m	[32m</projects>[m
+[32m+[m	[32m<buildSpec>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>org.eclipse.jdt.core.javabuilder</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m	[32m</buildSpec>[m
+[32m+[m	[32m<natures>[m
+[32m+[m		[32m<nature>org.eclipse.jdt.core.javanature</nature>[m
+[32m+[m	[32m</natures>[m
+[32m+[m[32m</projectDescription>[m
+[1mdiff --git a/T10_E9_Tomast/src/OsSelector.java b/T10_E9_Tomast/src/OsSelector.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cb70f63[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E9_Tomast/src/OsSelector.java[m
+[36m@@ -0,0 +1,77 @@[m
+[32m+[m[32mimport java.awt.FlowLayout;[m
+[32m+[m[32mimport java.awt.event.ItemEvent;[m
+[32m+[m[32mimport java.awt.event.ItemListener;[m
+[32m+[m
+[32m+[m[32mimport javax.swing.ButtonGroup;[m
+[32m+[m[32mimport javax.swing.JFrame;[m
+[32m+[m[32mimport javax.swing.JOptionPane;[m
+[32m+[m[32mimport javax.swing.JRadioButton;[m
+[32m+[m
+[32m+[m[32mpublic class OsSelector extends JFrame{[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate ButtonGroup grupoBtns;[m
+[32m+[m	[32mprivate JRadioButton opcion1RdBtn;[m
+[32m+[m	[32mprivate JRadioButton opcion2RdBtn;[m
+[32m+[m	[32mprivate JRadioButton opcion3RdBtn;[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic OsSelector() {[m
+[32m+[m		[32msuper("Selector de O.S");[m
+[32m+[m		[32msetSize(300,100);[m
+[32m+[m		[32msetResizable(false);[m
+[32m+[m		[32msetDefaultCloseOperation(EXIT_ON_CLOSE);[m
+[32m+[m		[32msetVisible(true);[m
+[32m+[m[41m		[m
+[32m+[m		[32m//inicializo:[m
+[32m+[m		[32mgrupoBtns = new ButtonGroup();[m
+[32m+[m[41m		[m
+[32m+[m		[32mopcion1RdBtn = new JRadioButton("Windows");[m
+[32m+[m		[32mopcion2RdBtn = new JRadioButton("Linux");[m
+[32m+[m		[32mopcion3RdBtn = new JRadioButton("Mac");[m
+[32m+[m[41m		[m
+[32m+[m		[32m//layout:[m
+[32m+[m		[32mthis.setLayout(new FlowLayout());[m
+[32m+[m		[32m//Agrego botones a su grupo:[m
+[32m+[m[41m		[m
+[32m+[m		[32mgrupoBtns.add(opcion1RdBtn); grupoBtns.add(opcion2RdBtn); grupoBtns.add(opcion3RdBtn);[m
+[32m+[m		[32m//voy agregando al panel base[m
+[32m+[m		[32mthis.add(opcion1RdBtn);[m
+[32m+[m		[32mthis.add(opcion2RdBtn);[m
+[32m+[m		[32mthis.add(opcion3RdBtn);[m
+[32m+[m[41m		[m
+[32m+[m		[32m//Agrego los itemListener:[m
+[32m+[m[41m		[m
+[32m+[m		[32mopcion1RdBtn.addItemListener(new ItemListener() {[m
+[32m+[m[41m			[m
+[32m+[m			[32m@Override[m
+[32m+[m			[32mpublic void itemStateChanged(ItemEvent e) {[m
+[32m+[m				[32mif(opcion1RdBtn.isSelected()) {[m
+[32m+[m					[32mJOptionPane.showMessageDialog(null, "Has elegido "+opcion1RdBtn.getText());[m
+[32m+[m				[32m}[m
+[32m+[m[41m				[m
+[32m+[m			[32m}[m
+[32m+[m		[32m});[m
+[32m+[m		[32mopcion2RdBtn.addItemListener(new ItemListener() {[m
+[32m+[m[41m			[m
+[32m+[m			[32m@Override[m
+[32m+[m			[32mpublic void itemStateChanged(ItemEvent e) {[m
+[32m+[m				[32mif(opcion2RdBtn.isSelected()) {[m
+[32m+[m					[32mJOptionPane.showMessageDialog(null, "Has elegido "+opcion2RdBtn.getText());[m
+[32m+[m				[32m}[m
+[32m+[m[41m				[m
+[32m+[m			[32m}[m
+[32m+[m		[32m});[m
+[32m+[m[41m		[m
+[32m+[m		[32mopcion3RdBtn.addItemListener(new ItemListener() {[m
+[32m+[m[41m			[m
+[32m+[m			[32m@Override[m
+[32m+[m			[32mpublic void itemStateChanged(ItemEvent e) {[m
+[32m+[m				[32mif(opcion3RdBtn.isSelected()) {[m
+[32m+[m					[32mJOptionPane.showMessageDialog(null, "Has elegido "+opcion3RdBtn.getText());[m
+[32m+[m				[32m}[m
+[32m+[m[41m				[m
+[32m+[m			[32m}[m
+[32m+[m		[32m});[m
+[32m+[m	[32m}[m
+[32m+[m[41m	[m
+[32m+[m[41m	 [m
+[32m+[m[32m}[m
+[1mdiff --git a/T10_E9_Tomast/src/uso.java b/T10_E9_Tomast/src/uso.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4da4000[m
+[1m--- /dev/null[m
+[1m+++ b/T10_E9_Tomast/src/uso.java[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32mimport javax.swing.SwingUtilities;[m
+[32m+[m
+[32m+[m[32mpublic class uso {[m
+[32m+[m
+[32m+[m	[32mpublic static void main(String[] args) {[m
+[32m+[m[41m		[m
+[32m+[m		[32mSwingUtilities.invokeLater(() -> {[m
+[32m+[m[41m			[m
+[32m+[m
+[32m+[m			[32mnew OsSelector();[m
+[32m+[m[41m					[m
+[32m+[m		[32m});[m
+[32m+[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m[32m}[m

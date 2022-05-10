@@ -25,7 +25,7 @@ public class uso {
 		gestor.setArrayList(desayunos);
 		
 		System.out.println(gestor.mostrarEnString());
-		System.out.println(gestor.mostrarComidasPorCampo(2));
+		System.out.println(gestor.mostrarComidasPorCampo(3));
 		System.out.println(gestor.mostrarCampoComida(2, 3));
 
 	}

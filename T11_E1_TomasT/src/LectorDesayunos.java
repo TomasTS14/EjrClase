@@ -20,7 +20,7 @@ public class LectorDesayunos {
 	private File file;
 	private Document doc;
 
-	LectorDesayunos(String ubicacion) {
+	public LectorDesayunos(String ubicacion) {
 		desayunos = new ArrayList<>();
 		this.ubicacion = ubicacion;
 		file = new File(ubicacion);
