@@ -1,59 +1,62 @@
+import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Duration;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class calculadoraTest {
 	
-	private Stream<double> arguments(double a, double b , double c) {
-		return Stream.of(a, b, c);
-	}
+	
 
 	@ParameterizedTest
-	@MethodSource("twoNumbers")
+	@ValueSource ( doubles={3,4,10,20,17})
 	
-	void testSuma(int a, int b, int c) {
+	void testSuma(double number) {
 
-		assertEquals(a, Calculadora.suma( b , c));
+		assertEquals(number*3, Calculadora.suma( number , number));
 
 	}
 	
-	private static Stream<Arguments> twoNumbers(){
-		
-		return Stream.of(
-				arguments(40, 25, 15),
-				arguments(2000, 1999, 1),
-				arguments (9, -5 , 9)
-				);
-	}
 
-	@Test
-	void testResta() {
+	@ParameterizedTest
+	@CsvSource ({"9,6,3","10,9,1","1239,12,1227","0.9,0.2, 0.7"})
+	void testResta(double val1, double val2, double result) {
 
-		assertEquals(80, Calculadora.resta(100, 20));
+		assertEquals(result, Calculadora.resta(val1, val2));
 
 	}
 
 	@Test
 	void testMultiplicacion() {
-
-		assertEquals(2000, Calculadora.multiplicacion(100, 20));
+		
+		
+		assertTimeout(Duration.ofMillis(20), () ->
+		{
+			Calculadora.multiplicacion(2500000000000000.99, 89006786876876867000099.11);
+		});
 	}
 
 	@Test
 	void testDivision() {
+		assertThrows(ArithmeticException.class, ()->{
+			Calculadora.division(0, 9);
+		});
 		assertEquals(50, Calculadora.division(100, 2));
 	}
 
-	@Test
-	void testRestoDivision() {
-
-		assertEquals(2, Calculadora.restoDivision(47, 5));
+	@ParameterizedTest
+	@CsvSource({ "0,40","0,47","1000000,9","0,58" })
+	void testRestoDivision(Double result, Double dividendo) {
+		
+		assumeTrue(result <9999);
+		assertEquals(result, Calculadora.restoDivision(dividendo, 2));
 	}
 
 	@Test
@@ -64,7 +67,7 @@ class calculadoraTest {
 
 	@Test
 	void testResultRaizCuadrada() {
-		
+		assertTrue(Double.isNaN(Calculadora.resultRaizCuadrada(-9)));
 		assertEquals(4.0, Calculadora.resultRaizCuadrada(16));
 
 	}

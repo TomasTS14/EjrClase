@@ -14,6 +14,10 @@ public class GestorDesayunos {
 		return gestor;
 		
 	}
+	
+	public ArrayList<food> getArrayList(){
+		return desayunos;
+	}
 	public void setArrayList(ArrayList<food> lista) {
 		this.desayunos = lista;
 	}

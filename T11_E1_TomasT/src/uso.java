@@ -18,16 +18,17 @@ public class uso {
 //			new lectorDesayunos();
 //		});
 		
-		LectorDesayunos lector = new LectorDesayunos("./src/desayunos.xml");
-		ArrayList<food> desayunos = lector.getArrayDesayunos();
-		
-		GestorDesayunos gestor = GestorDesayunos.getInstance();
-		gestor.setArrayList(desayunos);
-		
-		System.out.println(gestor.mostrarEnString());
-		System.out.println(gestor.mostrarComidasPorCampo(3));
-		System.out.println(gestor.mostrarCampoComida(2, 3));
+//		LectorDesayunos lector = new LectorDesayunos("./src/desayunos.xml");
+//		ArrayList<food> desayunos = lector.getArrayDesayunos();
+//		
+//		GestorDesayunos gestor = GestorDesayunos.getInstance();
+//		gestor.setArrayList(desayunos);
+//		
+//		System.out.println(gestor.mostrarEnString());
+//		System.out.println(gestor.mostrarComidasPorCampo(3));
+//		System.out.println(gestor.mostrarCampoComida(2, 3));
 
+		SwingUtilities.invokeLater(() -> new Mainframe());
 	}
 
 }
