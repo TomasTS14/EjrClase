@@ -23,20 +23,30 @@ public class GestorDesayunos {
 	}
 	public String filtrarComidaSingular(int index, int campo){
 		food comida = desayunos.get(index);
-		String campoComida = comida.getCamposConConstantes(campo);
+		String campoValor = comida.getCamposConConstantes(campo);
+		String campoNombre ="";
 		
-		return campoComida;
-		
-	}
-	public ArrayList<String> mostrarComidasPorCampo(int campo){
-		ArrayList<String> recopilacionPorCampo = new ArrayList<>();
-		for (food desayuno : desayunos) {
-			String string = desayuno.getId() + " " +desayuno.getCamposConConstantes(campo);
-			recopilacionPorCampo.add(string);
-			
+		switch (campo) {
+		case 1:
+			campoNombre += "Nombre:";
+			break;
+		case 2:
+			campoNombre += "Precio:";
+			break;
+		case 3:
+			campoNombre += "Descripcion:";
+			break;
+		case 4:
+			campoNombre += "Calorias:";
+			break;
+		default:
+			break;
 		}
-		return recopilacionPorCampo;
+		
+		return campoNombre+" "+campoValor;
+		
 	}
+
 	public ArrayList<String> mostrarEnString() {
 		ArrayList<String> listaEnString = new ArrayList<>();
 		for (food desayuno : desayunos) {
@@ -44,10 +54,6 @@ public class GestorDesayunos {
 			}
 		return listaEnString;
 	}
-	public String mostrarCampoComida (int index, int campo) {
-		food comida_AUX= desayunos.get(index);
-		String dato = comida_AUX.getCamposConConstantes(campo);
-		return dato;
-	}
+
 
 }

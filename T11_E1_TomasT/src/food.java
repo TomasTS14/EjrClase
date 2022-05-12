@@ -1,6 +1,11 @@
 
 public class food {
 	
+	public static final int NOMBRE = 1;
+	public static final int PRECIO = 2;
+	public static final int DESCRIPCION = 3;
+	public static final int CALORIAS = 4;
+	
 	private int id;
 	private String name;
 	private Double price;
@@ -37,19 +42,17 @@ public class food {
 	public String getCamposConConstantes(int campo) {
 		String campoEncontrado="";
 		switch (campo) {
+	
 		case 1:
-			campoEncontrado = String.format("%d", getId());
-			break;
-		case 2:
 			campoEncontrado = ""+getName();
 			break;
-		case 3:
+		case 2:
 			campoEncontrado = ""+getPrice();
 			break;
-		case 4:
+		case 3:
 			campoEncontrado = ""+getDescription();
 			break;
-		case 5:
+		case 4:
 			campoEncontrado = ""+getCalories();
 		}
 		return campoEncontrado;
@@ -78,7 +81,7 @@ public class food {
 	@Override
 	
 	public String toString() {
-		return String.format("\nNombre: %s\nPrecio: %.2f\nDescripcion: %s\nCalorias: %d", this.name, this.price,this.description, this.calories);
+		return String.format("\nNº en carta: %d\nNombre: %s\nPrecio: %.2f\nDescripcion: %s\nCalorias: %d", this.id,this.name, this.price,this.description, this.calories);
 	}
 
 }

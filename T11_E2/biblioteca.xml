@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Biblioteca>
+	<libro>
+		<titulo>La comunidad del anillo</titulo>
+		<autor>JRR Tolkien</autor>
+		<editorial>noSe</editorial>
+		<paginas>400</paginas>
+	</libro>
+	<libro>
+		<titulo>El vacio de los suenos</titulo>
+		<autor>P.F. Hamilton</autor>
+		<editorial>lasuya</editorial>
+		<paginas>700</paginas>
+	</libro>
+	<libro>
+		<titulo>Endymion</titulo>
+		<autor>Dan Simmons</autor>
+		<editorial>nose</editorial>
+		<paginas>1299</paginas>
+	</libro>
+</Biblioteca>

@@ -30,5 +30,11 @@
 		<description>Two eggs, bacon or sausage, toast, and our ever-popular hash browns</description>
 		<calories>950</calories>
 	</food>
+	<food numCarta="66">
+		<name>Crepe</name>
+		<price>$8.20</price>
+		<description>Esta rica</description>
+		<calories>200</calories>
+	</food>
 </breakfast_menu>
 
