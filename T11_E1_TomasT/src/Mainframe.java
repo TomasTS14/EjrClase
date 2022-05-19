@@ -136,7 +136,8 @@ public class Mainframe extends JFrame {
 			contenidoArea.setText(gestor.filtrarComidaSingular(itemSelectedIndice, itemSelectedCampo));
 		});
 
-		//checkboxes filtro:
+		//checkboxes filtro: 
+	
 		
 		nomCBox.addItemListener((a) -> actualizarPorCheckboxes());
 		priceCBox.addItemListener((a) -> actualizarPorCheckboxes());
