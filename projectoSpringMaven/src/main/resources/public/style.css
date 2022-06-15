@@ -1,0 +1,249 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    overflow: overlay;
+    /* Para poder tener una scroll bar transparente*/
+}
+
+/*Como cambiar el estilo del scroll bar, 
+puedo cambiarle el ancho, dar un fondo
+modificar especficamente el trocito que señala la parte en la que estas*/
+
+
+body::-webkit-scrollbar {
+    width: 18px;
+
+
+    /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+    /*asi no tiene fondo la barra de scroll, solo tengo el thumb flotando, esto solo funciona 
+    si body tiene overflow: overlay OSEA que cuando se sale el cuerpo de su espacio, se sobrepone a lo que sea que esté.
+   */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(148, 7, 7);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+
+}
+
+
+
+
+#header {
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 10px 10px 16px 8px rgba(0, 0, 0, 0.33);
+
+}
+
+#header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    font-family: 'Righteous', cursive;
+    background-color: black;
+
+}
+
+
+#titulo {
+    position: absolute;
+    color: white;
+
+}
+
+#titulo::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgb(198, 0, 0);
+    overflow: hidden;
+    width: 0%;
+    transition: 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#titulo:hover::before {
+    width: 100%;
+
+}
+
+
+
+nav>ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    background: linear-gradient(90deg, rgb(142, 4, 4) 0%, rgb(64, 0, 0) 100%, rgba(0, 212, 255, 1) 100%);
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+
+
+}
+
+nav ul li {
+    margin-left: 2em;
+
+}
+
+nav ul li:hover {
+
+    text-decoration: underline;
+
+}
+
+main {
+    top: 100px;
+    display: flexbox;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    height: 5000px;
+    width: 100%;
+}
+
+section {
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+    width: 100%;
+    height: 80vh;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 2em;
+    padding: 1em;
+
+}
+
+.imageGrid>img:hover {
+    transform: scale(1.08);
+}
+
+.imageGrid {
+    width: 100%;
+    height: 25%;
+    padding: 0.5em;
+}
+
+.imageGrid>img {
+
+    margin: 2em;
+}
+
+#Bienvenido {
+    position: relative;
+    background-image: url("../img1.jpg");
+    background-size: 100%;
+    color: white;
+
+    /* parallax effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.divInternoBase {
+    position: absolute;
+    padding: 1em;
+    bottom: 3em;
+    background-color: rgba(223, 250, 255, 0.2);
+    box-shadow: 10px 10px 9px rgba(0, 0, 0, 0.3);
+    border-radius: 1em;
+    opacity: 0;
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.divInternoBase.active {
+    opacity: 1;
+}
+
+.divInternoBase:hover {
+    transform: scaleX(1.02) scaleY(1.02);
+
+}
+
+
+
+#catalogo {
+    color: white;
+    position: relative;
+    background-image: url("../imgCatalogo.jpg");
+    background-size: 100%;
+
+    /*parallax effect , principalmente afectan el attachment fixed, que bloquea la imagen ena zona
+    y el bgsize cover, que hace que la imagen ocupe el total del container*/
+    /* background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.datosEvento {
+
+    display: none;
+    opacity: 0;
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+
+.datosEvento.active {
+    box-sizing: border-box;
+    top: 0px;
+    position: absolute;
+    display: flex;
+    background-color: rgb(138, 138, 138);
+    opacity: 1;
+    box-sizing: border-box;
+
+
+}
+
+.datosEvento.active>img {
+    width: 340px;
+    height: 400px;
+    box-sizing: border-box;
+}
+
+#catalogo>div {
+    position: absolute;
+
+}
+
+#metodosPagoSection {
+
+    /*tiene parallax*/
+    position: relative;
+    background-size: 100%;
+
+    background-image: url("../img1.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
