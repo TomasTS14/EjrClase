@@ -1,9 +1,7 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,4 +21,8 @@ private final StudentService studentService;
         return studentService.getStudents();
     }
 
+    @PostMapping //Puedo probar a enviar request POST con POSTMAN, en formato JSON, recordar formato "param" : "value" con comillas incluiudas
+    public void addStudent(@RequestBody Student student ){ //MAPEA EL requestbody a un student, o lo intenta.
+    studentService.addStudent(student);
+    }
 }

@@ -5,17 +5,16 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Entity //permite que sea mapeado por jpa a la DB en postgres que estoy usando (sale en application.properties)
-@Table //Es una tabla cada campo
+@Table //Es una tabla, cada campo una columna
 public class Student {
 //Esto aqui abajo no lo he entendido bien
     @Id
-    @SequenceGenerator(
+    @SequenceGenerator( //creo un Sequence generator de estas caracteristicas (avanza en secuencia con allocationSIze, osea 1)
             name = "student_sequence",
             sequenceName = "student_sequence",
-            allocationSize = 1 //imagino que esto tiene que ver con la creacion de IDs, aunque no se
-            //como compatibiliza con que tengo un autoincrement en la tabla de students en school
+            allocationSize = 1
     )
-    @GeneratedValue(
+    @GeneratedValue( //Empezar´por el primer num de la secuencia y seguirá sumando el allocationSize de su generator.
             strategy = GenerationType.SEQUENCE, //Imagino que esto mantendrá la cuenta de las IDs
             generator = "student_sequence"
     )
@@ -23,7 +22,7 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dateOfBirth;
-    @Transient //NO FORMA PARTE DE LA BASE DE DATOS, SE CALCULA EN EL PROGRAMA
+    @Transient //NO FORMA PARTE DE LA BASE DE DATOS, no se le aplica la persistencia. En caso de solicitarse se usará su respectivo getter.
     private int age;
 
     public Student() {
@@ -82,7 +81,7 @@ public class Student {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        this.age =age;
     }
 
     @Override
