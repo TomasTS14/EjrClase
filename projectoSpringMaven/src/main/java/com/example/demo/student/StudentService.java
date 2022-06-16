@@ -1,6 +1,7 @@
 package com.example.demo.student;
 
 import com.example.demo.student.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,14 @@ import java.util.List;
 //@Component lo mismo que service pero service es semanticamente más correcto
 public class StudentService {
 
+    private  final StudentRepository studentRepository; //usará dependency injection!!!!!
 
-    public List<Student> getStudents(){
-        return List.of( new Student(1L, "mariam","hasjdk@ashjdk.com", LocalDate.of(2000,1,1),22) ) ;
+    @Autowired //para que se inicialice solo el el objeto studentRepository
+    public StudentService(StudentRepository studentRepository){
+        this.studentRepository = studentRepository; //como dije, se inicializará solo.
+     }
+    public List<Student> getStudents() {
+        return studentRepository.findAll(); //ESTO son metodos que no he implementado yo, pero que forman parte
+        //de spring-jpa-data.
     }
 }

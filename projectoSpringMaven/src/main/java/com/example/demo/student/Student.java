@@ -1,31 +1,47 @@
 package com.example.demo.student;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
+@Entity //permite que sea mapeado por jpa a la DB en postgres que estoy usando (sale en application.properties)
+@Table //Es una tabla cada campo
 public class Student {
-
+//Esto aqui abajo no lo he entendido bien
+    @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1 //imagino que esto tiene que ver con la creacion de IDs, aunque no se
+            //como compatibiliza con que tengo un autoincrement en la tabla de students en school
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE, //Imagino que esto mantendrá la cuenta de las IDs
+            generator = "student_sequence"
+    )
     private Long id;
     private String name;
     private String email;
     private LocalDate dateOfBirth;
+    @Transient //NO FORMA PARTE DE LA BASE DE DATOS, SE CALCULA EN EL PROGRAMA
     private int age;
 
     public Student() {
     }
 
-    public Student(Long id, String name, String email, LocalDate dateOfBirth, int age) {
+    public Student(Long id, String name, String email, LocalDate dateOfBirth) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
+
     }
 
-    public Student(String name, String email, LocalDate dateOfBirth, int age) {
+    public Student(String name, String email, LocalDate dateOfBirth) {
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
+
     }
 
     public Long getId() {
@@ -61,7 +77,8 @@ public class Student {
     }
 
     public int getAge() {
-        return age;
+        return Period.between(dateOfBirth, LocalDate.now()).getYears(); //ESTE GETTER DEVUELVE EL CALCULO,
+        // Y CONECTA CON AL REPRESENTACION DE LA EDAD
     }
 
     public void setAge(int age) {
