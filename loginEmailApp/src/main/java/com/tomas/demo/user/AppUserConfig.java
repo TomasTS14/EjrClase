@@ -17,13 +17,15 @@ public class AppUserConfig {
                     "Tomas",
                     "Torres",
                     "tomastorres@email.com",
-                    "123"
+                    "123",
+                    AppUserRole.USER
             );
             AppUser user2 = new AppUser(
                     "Andres",
                     "Torres",
                     "andres@email.com",
-                    "123"
+                    "123",
+                    AppUserRole.USER
             );
 
             appUserRepository.saveAll(List.of(user1, user2));
