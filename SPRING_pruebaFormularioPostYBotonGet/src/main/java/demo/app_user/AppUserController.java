@@ -15,9 +15,10 @@ public class AppUserController {
     private  final AppUserService service;
 
     @PostMapping
-    public void addAppUser (@RequestBody AppUser appUser){
+    public String addAppUser (@RequestBody AppUser appUser){
         System.out.println(appUser);
         service.addUser(appUser);
+        return "EVERYTHING OK"; //SI NO DEVUELVO NADA, ES UNA EMPTY RESPONSE Y CHROME LA INTERPRETA COMO FALLIDA
         //TODO: tengo que traducir esto a un request que pueda ser leido, revisar loginEmailApp.
     }
 

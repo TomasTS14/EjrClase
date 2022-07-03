@@ -3,37 +3,46 @@
 
 let form = document.getElementById('form');
 
-let botonSubmit = document.querySelector('button[type="submit"]');
+let botonSubmit = document.querySelector('input[type="submit"]');
 let textArea = document.querySelector('textarea');
 
 const takeSubmit = () => {
-    let nombre = document.getElementById('nombre').textContent;
-    let apellido = document.getElementById('apellido').textContent;
-    let email = document.getElementById('email').textContent;
+    let nombreString = document.getElementById('nombre').value;
+    let apellidoString = document.getElementById('apellido').value;
+    let emailString = document.getElementById('email').value;
+
 
     const user = {
-        nombre: `${nombre}`,
-        apellido: `${apellido}`,
-        email: `${email}`
+        nombre: nombreString,
+        apellido: apellidoString,
+        email: emailString
     };
+    console.log(JSON.stringify(user));
 
     return user;
 }
 
 const sendPostRequest = () => {
 
-    var payload = takeSubmit();
+    let payload = takeSubmit();
 
-    var data = new FormData();
-    data.append("json", JSON.stringify(payload));
+    // let data = new FormData();
+    // data.append("json", payload);
 
     fetch("api/app_user",
         {
+            headers: {
+                'Host': 'localhost:8080',
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
             method: "POST",
-            body: data
+            body: JSON.stringify(payload)
         })
-        .then(function (res) { console.log(res); return JSON.stringify(data); })
-        .then(function (data) { alert(JSON.stringify(data)) })
+        .then(function (res) { console.log(res); })
+        .catch(function (error) { console.log(error) })
+
+    console.log(payload);
     // const newUser = takeSubmit();
     // let requestBody = JSON.stringify(newUser);
     // const http = new XMLHttpRequest();
@@ -63,6 +72,6 @@ botonSubmit.addEventListener('click', writeUsersOntxtArea);
 (function () {
     textArea.textContent = getUsersRequest();
     if (typeof browser === "undefined") {
-        var browser = chrome;
+        let browser = chrome;
     }
 })(); 
