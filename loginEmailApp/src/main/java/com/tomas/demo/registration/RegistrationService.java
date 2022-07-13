@@ -2,6 +2,7 @@ package com.tomas.demo.registration;
 
 import com.tomas.demo.email.EmailSender;
 import com.tomas.demo.email.EmailService;
+import com.tomas.demo.user.AppUser;
 import com.tomas.demo.user.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class RegistrationService {
     private final EmailSender emailSender;
 
 
+    public String register(RegistrationRequest request) {
 
-
+        return null;
+    }
 }
