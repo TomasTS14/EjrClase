@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-@NoArgsConstructor
+
 @RequiredArgsConstructor
 public class Role {
 

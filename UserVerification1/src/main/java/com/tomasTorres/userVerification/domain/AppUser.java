@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static javax.persistence.FetchType.EAGER;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -19,7 +21,13 @@ public class AppUser {
     private String name;
     private String username;
     private String password;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = EAGER,
+    targetEntity = Role.class)
     private Collection<Role> roles = new ArrayList<>();
 
+    public AppUser(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+    }
 }
