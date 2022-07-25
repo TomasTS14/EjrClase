@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor //sirve para hacer autowired de todos los campos final
@@ -31,12 +32,13 @@ public class AppUserServiceImpl implements  AppUserService {
 
     @Override
     public Role saveRole(Role role) {
+        log.info("Saving new role {} to the database", role.getName());
         return roleRepo.save(role);
     }
 
     @Override
     public void addRoleToUser(String username, String roleName) {
-
+        log.info("adding new role {} to user {}",roleName,username );
         AppUser user = userRepo.findByUsername(username);
         Role role = roleRepo.findByName(roleName);
         user.getRoles().add(role);
@@ -46,11 +48,23 @@ public class AppUserServiceImpl implements  AppUserService {
 
     @Override
     public AppUser getUser(String username) {
-       return  userRepo.findByUsername(username);
+       log.info("Fetching user {} from database", username);
+        return  userRepo.findByUsername(username);
+    }
+
+    @Override
+    public AppUser getUserById(Long id) {
+       Optional<AppUser> userFound = userRepo.findById(id);
+
+       if(userFound.isEmpty()){
+           throw new IllegalStateException(String.format("User with id %d not found", id));
+       }
+       return userFound.get();
     }
 
     @Override
     public List<AppUser> getUsers() {
+        log.info("Fetching all users");
         return userRepo.findAll();
     }
 }

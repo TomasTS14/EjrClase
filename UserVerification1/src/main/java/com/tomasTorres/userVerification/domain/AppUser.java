@@ -16,18 +16,14 @@ import static javax.persistence.FetchType.EAGER;
 @AllArgsConstructor
 public class AppUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "sequence_generator", sequenceName = "app_user_id", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
     private Long id;
     private String name;
     private String username;
     private String password;
-    @ManyToOne(fetch = EAGER,
+    @ManyToMany(fetch = EAGER,
     targetEntity = Role.class)
     private Collection<Role> roles = new ArrayList<>();
 
-    public AppUser(String name, String username, String password) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-    }
 }
