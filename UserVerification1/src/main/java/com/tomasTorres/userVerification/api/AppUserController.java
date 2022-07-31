@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.EntityResponse;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -30,7 +31,7 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getUserById(id));
     }
 
-    @GetMapping("/**")
+    @GetMapping
     public ResponseEntity<List<AppUser>> getUsers(){
         return ResponseEntity.ok().body(appUserService.getUsers());
     }
@@ -40,7 +41,7 @@ public class AppUserController {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/AppUser/user/save").toUriString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(user));
     }
-    @PostMapping(/role/save)
+    @PostMapping("/role/save")
     public ResponseEntity<?> saveRole(@RequestBody Role role){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/AppUser/role/save").toUriString());
         return ResponseEntity.created(uri).body(appUserService.saveRole(role));

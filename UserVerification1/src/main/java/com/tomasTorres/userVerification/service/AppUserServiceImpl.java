@@ -4,9 +4,11 @@ import com.tomasTorres.userVerification.domain.AppUser;
 import com.tomasTorres.userVerification.domain.Role;
 import com.tomasTorres.userVerification.repo.AppUserRepo;
 import com.tomasTorres.userVerification.repo.RoleRepo;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor //sirve para hacer autowired de todos los campos final
 @Transactional //PERMITE HACER CAMBIOS, ESCRIBIR EN LA BASE.
 @Slf4j
-public class AppUserServiceImpl implements  AppUserService {
+public class AppUserServiceImpl implements  AppUserService, UserDetailsService {
 
 
     private final AppUserRepo userRepo;
@@ -66,5 +68,11 @@ public class AppUserServiceImpl implements  AppUserService {
     public List<AppUser> getUsers() {
         log.info("Fetching all users");
         return userRepo.findAll();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        return  userRepo.findByUsername(username);
     }
 }
